@@ -1,0 +1,237 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  background-color: #D9D9D9;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+}
+
+.search-bar {
+  width: 400px;
+  height: 24px;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  margin-right: 1rem;
+}
+
+.nav-items {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-items li {
+  margin-right: 4rem;
+}
+
+.nav-items a {
+  text-decoration: none;
+  color: #333;
+}
+
+.profile-pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+main {
+  display: flex;
+  padding: 1rem;
+}
+
+.left-container {
+  position: relative;
+  flex: 1;
+  height: 500px;
+  background-color: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.left-container img.left-image {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+}
+
+.left-container img.left-profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.left-container h3 {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  white-space: nowrap;
+}
+
+
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  margin-top: 20px;
+  margin-left: 30px;
+  text-align: center;
+}
+
+.profile-pic-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-image: url('profile-pic.jpeg');
+  background-size: cover;
+  margin-right: 10px;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.profile-name {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.publish-date {
+  color: #aaa;
+  font-size: 0.8rem;
+}
+
+.center-container {
+  flex: 3;
+  background-color: #fff;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+}
+
+.image-area {
+  position: relative;
+  width: 800px;
+  height: 450px;
+  overflow: hidden;
+  margin-left: 30px;
+}
+
+.center-container img.center-image {
+  width: 96%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.social-buttons button {
+  flex-grow: 1;
+  background-color: #eee;
+  border: 1px solid #ddd;
+  height: 48px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.like-button {
+  border-bottom-left-radius: 12px;
+}
+
+.share-button {
+  border-bottom-right-radius: 12px;
+}
+
+.right-container {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.people-viewed,
+.notifications {
+  border: 1px solid #ddd;
+  padding: 0 20px 10px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  background-color: #fff;
+}
+
+.user-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  border: 1px solid #000;
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.user-container .user-pic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  background-image: url('profile-pic.jpeg');
+  background-size: cover;
+}
+
+.user-container .user-info {
+  flex: 1;
+}
+
+.user-container .user-info .user-name {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.user-container .user-info .user-designation {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.user-container .icon {
+  width: 20px;
+  height: 20px;
+  margin-left: auto;
+  margin-right: 10px;
+  border-radius: 12px;
+  padding: 10px;
+  background-color: #ccc;
+}

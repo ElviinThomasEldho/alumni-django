@@ -1,0 +1,130 @@
+{% extends './main.html' %} {% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/feed.css' %}" />
+{% endblock %} 
+{% block content %}
+<main>
+  <div class="left-container">
+    <img src="{% static 'img/image.jpg' %}" alt="Image" class="left-image" />
+    <a href="#"
+      ><img
+        src="{% static 'img/profile-pic.jpeg' %}"
+        alt="Profile Picture"
+        class="left-profile-pic"
+    /></a>
+    <h3>Welcome Gautham!</h3>
+  </div>
+
+  <div class="container">
+    <div class="center-container">
+      <div class="profile-info">
+        <div class="profile-pic-circle"></div>
+        <div class="profile-details">
+          <div class="profile-name">John Doe</div>
+          <div class="publish-date">December 27, 2023</div>
+        </div>
+      </div>
+
+      <div class="image-area">
+        <img
+          src="{% static 'img/image.jpg' %}"
+          alt="Image"
+          class="center-image"
+        />
+      </div>
+
+      <div class="social-buttons">
+        <button class="like-button">Like</button>
+        <button class="comment-button">Comment</button>
+        <button class="share-button">Share</button>
+      </div>
+    </div>
+
+    <div class="center-container">
+      <div class="profile-info">
+        <div class="profile-pic-circle"></div>
+        <div class="profile-details">
+          <div class="profile-name">John Doe</div>
+          <div class="publish-date">December 27, 2023</div>
+        </div>
+      </div>
+
+      <div class="image-area">
+        <img
+          src="{% static 'img/image.jpg' %}"
+          alt="Image"
+          class="center-image"
+        />
+      </div>
+
+      <div class="social-buttons">
+        <button class="like-button">Like</button>
+        <button class="comment-button">Comment</button>
+        <button class="share-button">Share</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-container">
+    <div class="people-viewed">
+      <h2>People Also Viewed</h2>
+      <div class="user-container">
+        <div class="user-pic"></div>
+        <div class="user-info">
+          <div class="user-name">User 1</div>
+          <div class="user-designation">Designer</div>
+        </div>
+        <div class="icon">
+          <span class="material-symbols-outlined">person_add</span>
+        </div>
+      </div>
+      <div class="user-container">
+        <div class="user-pic"></div>
+        <div class="user-info">
+          <div class="user-name">User 1</div>
+          <div class="user-designation">Designer</div>
+        </div>
+        <div class="icon">
+          <span class="material-symbols-outlined">person_add</span>
+        </div>
+      </div>
+      <div class="user-container">
+        <div class="user-pic"></div>
+        <div class="user-info">
+          <div class="user-name">User 1</div>
+          <div class="user-designation">Designer</div>
+        </div>
+        <div class="icon">
+          <span class="material-symbols-outlined">person_add</span>
+        </div>
+      </div>
+      <!-- Add other user-container elements here -->
+    </div>
+
+    <div class="notifications">
+      <h2>Notifications</h2>
+      <div class="user-container">
+        <div class="user-pic"></div>
+        <div class="user-info">
+          <div class="user-name">Notification 1</div>
+          <div class="user-designation">Liked your post</div>
+        </div>
+        <div class="icon">
+          <span class="material-symbols-outlined">group</span>
+        </div>
+      </div>
+      <div class="user-container">
+        <div class="user-pic"></div>
+        <div class="user-info">
+          <div class="user-name">Notification 1</div>
+          <div class="user-designation">Liked your post</div>
+        </div>
+        <div class="icon">
+          <span class="material-symbols-outlined">group</span>
+        </div>
+      </div>
+      <!-- Add other user-container elements here -->
+    </div>
+  </div>
+</main>
+{% endblock %}

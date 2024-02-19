@@ -1,0 +1,334 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect. - WebApp</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+     <!-- Navbar -->
+     <nav>
+        <a href="{% url 'home' %}" class="logoe">R<span class="logose">.</span></a>
+        <div class="toggle" onclick="toggleMenu();"></div>
+
+        <!-- Menu -->
+        <ul class="menu">
+            <li><a href="{% url 'home' %}" onclick="toggleMenu();">Home</a></li>
+            <li><a href="{% url 'feed' %}" onclick="toggleMenu();">Feed</a></li>
+            <li><a href="#about" onclick="toggleMenu();">About</a></li>
+            <li><a href="#services" onclick="toggleMenu();">Events</a></li>
+            <li><a href="#work" onclick="toggleMenu();">Chats</a></li>
+        </ul>
+    </nav>
+    <section class="hero">
+        <h3 class="home-text">Introducing</h3>
+        <h2 class="home">ReConnect<span>.</span></h2>
+        <p class="home">The Official Computer Science Alumni Network of RSET.</p>
+        <div class="btndiv">
+            <input type="button" class="btn" value="Login"> <p>to connect with your fellow rajagirians.</p>
+        </div>
+    </section>
+    <section class="info" id="about">
+        <img class="pic" src="{% static 'img/whowe.png' %}" alt="">
+
+        <div class="section-content">
+            <div class="section-header">
+              <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
+                  <circle cx="17.5" cy="17.5" r="17.5" fill="#570303"/>
+                </svg>
+                <h3 >Who We Are</h3>
+                <hr>
+            </div>
+              <p>Rajagiri School of Engineering and Technology (RSET)  has been a pioneer in engineering education in Kochi,  Kerala. Established in [year], RSET has consistently  strived for excellence in education, research, and innovation. Our alumni have played a pivotal role in  carrying forward this legacy, making a significant impact on the world stage.</p>
+        </div>
+        
+    </section>
+    <section>
+        <div class="alumniwork">
+             <h2>Our Alumni work at</h2>
+             <div class="logos">
+                <div class="logos-slide">
+                    <img src="https://source.unsplash.com/_C5zsV_p-YI/900x900">
+                    <img src="https://source.unsplash.com/58WRkqcAn9o/900x900">
+                    <img src="https://source.unsplash.com/9z-veIxii6k/900x900">
+                    <img src="https://source.unsplash.com/AwnggmGaFms/900x900">
+                    <img src="https://source.unsplash.com/Bi0atWiKP-4/900x900">
+                    <img src="https://source.unsplash.com/YeOMRwgvPv4/900x900">
+                    <img src="https://source.unsplash.com/3cNc1U7nJcs/900x900">
+                    <img src="https://source.unsplash.com/mNOaXIjJkok/900x900">
+                    <img src="https://source.unsplash.com/pz_hAv6ER7c/900x900">
+                    <img src="https://source.unsplash.com/oqmIM9bkAWQ/900x900">
+                    <img src="https://source.unsplash.com/Sjk38bu7VXg/900x900">
+                    <img src="https://source.unsplash.com/9jsV5uKbAEM/900x900">
+                    <img src="https://source.unsplash.com/CgR5CX2j0mc/900x900">
+                    <img src="https://source.unsplash.com/aAmYwM9dHUM/900x900">
+                    <img src="https://source.unsplash.com/yN7prWLW7xg/900x900">
+                </div>
+              </div>
+          
+              <script>
+                var copy = document.querySelector(".logos-slide").cloneNode(true);
+                document.querySelector(".logos").appendChild(copy);
+              </script>
+        </div>
+    </section>  
+<!--ACHIEVEMENTS-->
+        <section >
+
+        
+            
+            <div class="info">
+            
+            <div class="btndiv1">
+              <div class="section-content-alum">
+                <div class="section-header-alum">            
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
+                    <circle cx="17.5" cy="17.5" r="17.5" fill="#570303"/>
+                  </svg><h3 id="about">Alumni Achievements </h3>
+                  <hr>
+                  </div>
+                  <br>
+                  <p>We love to celebrate your accomplishments! Share your success stories with us, and let us feature them on our website and social media.</p>
+              </div>
+                    <input type="button" class="btn1" value="Discover">
+                
+            </div>
+           
+            <img class="pic1" src="{% static 'img/achive.png' %}" alt="">
+            
+            </div>
+            
+        </section>
+
+        <!--EXPLORE-->
+        <section class="info"id="explore">
+            <div class="pics">
+           
+                <div class="item-0">&nbsp;</div>
+                <div class="item-1">&nbsp;</div>
+                <div class="item-2">&nbsp;</div>
+                <div class="item-3">&nbsp;</div>
+                <div class="item-4">&nbsp;</div>
+                <div class="item-5">&nbsp;</div>
+                <div class="item-6">&nbsp;</div>
+                <div class="item-7">&nbsp;</div>
+                <div class="item-8">&nbsp;</div>
+                <div class="item-9">&nbsp;</div>
+                <div class="explore-text">
+                    <div class="section-content-explore">
+                        <div class="section-header-explore">
+                          
+                          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 36 36" fill="none">
+                              <circle cx="17.5" cy="17.5" r="17.5" fill="#570303"/>
+                            </svg><h3 >Explore the Memories</h3>
+                            <hr>
+                            </div>
+                            <p>Take a trip down memory lane by exploring our photo galleries, yearbooks, and stories shared by fellow   alumni. Share your own memories and stories, and   relive the best moments of your time at RSET.</p>
+                      </div>
+                </div>
+                <div class="next-button">
+                    <button type="button" >
+                    <img src="{% static 'img/next 1.png' %}" alt="buttonpng" >
+                    </button>
+                </div>
+            </div>
+          </section>
+
+
+
+        <section>
+          <!--Mentorship-->
+          <div class="info">
+            
+            <div class="btn-Joinin">
+              <div class="section-content-mentor">
+                <div class="section-header-mentor">            
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 36 36" fill="none">
+                    <circle cx="17.5" cy="17.5" r="17.5" fill="#570303"/>
+                </svg><h3 id="about">Mentorship Opportunities </h3>
+                  <hr>
+                  </div>
+                  <br>
+                  <p>Give back to the community by becoming a mentor to current students. Share your insights, experiences, and expertise.</p>
+              </div>
+                    <input type="button" class="join-btn" value="Join In!">
+                
+            </div>
+           
+            <img class="mentor-pic" src="{% static 'img/mentorship.png' %}" alt="">
+            
+            </div>
+            
+            <div class="informed-contents-grid">
+
+
+                <div class="news-events">
+                <div class="head-text">
+                    News and Events</div>
+        
+                 </div>
+                 
+                 
+                <!--event1-->   
+                <div class="date-details1">
+                    
+                    <div class="date1">03</div>
+                        <div class="month1">September</div>
+                        <div class="year1">2023</div>
+                </div>
+                <div class="event-content1">
+        
+                    
+                <div class="info-head1">UST DRIVE</div>
+                    <p class="info-content-1">RSET in association with placement Cell</p>
+                </div>
+                <div class="Calendar-1">
+                    <input type="button"  class="Calendar" value="Calendar">
+                </div>
+        
+                <!--event2-->
+                <div class="date-details2">
+                    
+                    <div class="date1">03</div>
+                        <div class="month1">September</div>
+                        <div class="year1">2023</div>
+                </div>
+                <div class="event-content2">
+        
+                    
+                    <div class="info-head1">UST DRIVE</div>
+                    <p class="info-content-1">RSET in association with placement Cell</p>
+                </div>
+                <div class="Calendar-2">
+                    <input type="button"  class="Calendar" value="Calendar">
+                </div>
+                
+        
+                <!--event3-->
+        
+                <div class="date-details3">
+                    
+                    <div class="date1">03</div>
+                        <div class="month1">September</div>
+                        <div class="year1">2023</div>
+                </div>
+                <div class="event-content3">
+                    
+                    <div class="info-head1">UST DRIVE</div>
+                    <p class="info-content-1">RSET in association with placement Cell</p>
+                </div>
+                <div class="Calendar-3">
+                    <input type="button"  class="Calendar" value="Calendar">
+                </div>
+        
+                
+                <!--RIGHT SIDE OF INFORMED CONTENT-->
+        
+                <div class ="informed">
+                    <div class="section-content-informed">
+                        <div class="section-header-informed">
+                          
+                          <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 36 36" fill="none">
+                              <circle cx="17.5" cy="17.5" r="17.5" fill="#570303"/>
+                            </svg><h3 >Stay Informed</h3>
+                            <hr>
+                            </div>
+                            <p>Stay updated with the latest news, research, and innovations <br> coming out of RSET. Our commitment to excellence continues, and you can be a part of this journey.</p>
+                      </div>
+                </div>
+        
+                <!--subscribe-->
+        
+                <div class="Subscribe-heading">
+                    <p>
+                        Subscribe for Event Updates
+                    </p>
+                </div>
+        
+                
+                <div class="entry">
+                    <div class="input-name1">
+                        <input type="text" required>
+                        <div class="underline1"></div>
+                        <label>Name</label>
+                        </div>
+                        <br>
+                        <br>
+                    <div class="input-email">
+                        <input type="email" required>
+                        <div class="underline"></div>
+                        <label>E-Mail</label>
+            
+                    </div>
+                    
+                    </div>
+
+                    <div class="Subscribe-btn">
+                        <input type="submit" class="Sub-btn" value="SUBSCRIBE">
+        
+                    </div>
+            
+            </div>
+</section>
+
+
+<section>
+    <div class="quote">
+      <div class="stay-connected">
+        
+      <span class="text-14">-Stay connected </span><svg class="small1" xmlns="http://www.w3.org/2000/svg" width="20" height="35" viewBox="0 0 35 35" fill="none">
+        <circle cx="17.5" cy="17.5" r="17.5" fill="#570303"/>
+      </svg>
+      </div>
+      
+      <div clas="stay-inspired">
+      <span class="text-14" > Stay inspired </span>
+        <svg class= " small"xmlns="http://www.w3.org/2000/svg" width="20" height="35" viewBox="0 0 35 35" fill="none">
+        <circle cx="17.5" cy="17.5" r="17.5" fill="#570303"/>
+        </svg>
+        </div>
+        <div class="stay-rajagirian">
+        <span class="text-14"> Stay Rajagirian-</span>
+        </div>      
+  </section>
+
+  <p class="join-us-in">
+    <span
+      >Join us in celebrating the spirit of RSET, where knowledge meets innovation, and friendships last a
+      lifetime.<br /><br />
+    </span>
+    <span >Welcome back to your home away from home!<br /></span>
+  </p>
+
+  <footer>
+    <hr>
+  <br/>
+  <div class="footer-text">
+  <p>Rajagiri School of Engineering & </p>
+  <p>Technology Rajagiri Valley, Kakkanad,</p>
+  <p> Kochi 682 039 Kerala</p>
+    <br><br>
+    <p><strong>Tel:</strong>  +91 484 2660999</p>
+   </div>     
+  </footer>
+
+
+
+
+
+        
+        
+
+          
+    <!-- Scroll Animation -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <!-- Link To JS -->
+    <script src="main.js"></script>
+    <script>
+        var copy = document.querySelector(".logos-slide").cloneNode(true);
+        document.querySelector(".logos").appendChild(copy);
+      </script>
+</body>
+</html>
