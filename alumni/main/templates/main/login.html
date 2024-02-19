@@ -1,0 +1,40 @@
+{% extends './main.html' %}
+{% load static %}
+
+{% block content %}
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <div class="form-heading">
+        <h2>Welcome Back!</h2>
+    </div>
+    <div class="container">
+        <p>Enter your username and password below to login</p>
+        <table>
+            <tbody>
+                <tr>
+                    <td><label for="username">Username</label></td>
+                    <td><input type="text" name="username" style="width: 85%;"></td>
+                </tr>
+                <tr>
+                    <td><label for="password">Password</label></td>
+                    <td>
+                        <div style="display: flex; justify-content: start; align-items: center;">
+                            <input type="password" id="password" name="password" data-toggle="password">                                
+                            <a class="btn btn-icon" href="#"><img class="icon" id="togglePassword" src="{% static '/icons/eye.png' %}" alt=""></a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        {{ form.errors }}
+        <a href="#" style="color:black;">Forgot Password?</a>
+        {% for message in messages %}
+        <p>{{message}}</p><br>
+        {% endfor %}
+    
+        <button class="btn btn-secondary" type="submit" name="Submit">Login</button>
+    </div>
+</form>
+
+{% endblock %}
