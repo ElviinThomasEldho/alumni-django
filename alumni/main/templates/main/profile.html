@@ -1,0 +1,116 @@
+{% extends './main.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+{% endblock %} 
+{% block content %}
+    <main>
+        <div class="container">
+            <div class="profile-container">
+                <img src="{% static 'img/image.jpg' %}" alt="Image" class="left-image">
+                <a href="#"><img src="{% static 'img/profile-pic.jpeg' %}" alt="Profile Picture" class="left-profile-pic"></a>
+                <h1>Gautham C Sudheer</h1>
+                <h3>Lead Product Designer at Google</h3>
+                <p>Silicon Valley, California</p>
+                <p>10 Posts &nbsp;&nbsp; 500 Connections</p>
+                <button class="edit">Edit Info</button>
+            </div>
+
+            <div class="about-container">
+                <h1>About</h1>
+                <p>I am a Computer Science & Engineer undergraduate student at Rajagiri School of Engineering & Technology. My passion for helping others publish their skills and talents using the digital platform has been evident in my involvement in bundling a few projects. Through those experiences, I have learned to interact with a diverse group of people, which has increased my ability to relate to others. I have also had the opportunity to create websites for individuals that focused on life skills like teamwork, communication, and time management. Website and App development were my gateway to the creative industry which inspired me to start my own projects and to take the first steps in the digital world. I have a thorough understanding of front-end development. I have been mostly involved in establishing effective client relationships. I have also developed a superior understanding of client service and client relationship with the span of time.</p>
+            </div>
+
+            <div class="skills-container">
+                <h1>Skill</h1>
+                <div class="skill-container">
+                    <div class="company-pic1"></div>
+                    <div class="skill-info">
+                        <div class="skill-name">Communication</div>
+                        <div class="skill-experience">3 experiences across Google and 1 other company</div>
+                    </div>
+                </div>
+
+                <div class="skill-container">
+                    <div class="company-pic2"></div>
+                    <div class="skill-info">
+                        <div class="skill-name">Pipeline Integration</div>
+                        <div class="skill-experience">5 experiences across Spotify and 1 other company</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="posts-container">
+                <h1>Posts</h1>
+
+                <div class="post-container">
+                    <div class="profile-info">
+                        <div class="profile-pic-circle"></div>
+                        <div class="profile-details">
+                            <div class="profile-name">John Doe</div>
+                            <div class="publish-date">December 27, 2023</div>
+                        </div>
+                    </div>
+
+                    <div class="image-area">
+                        <img src="{% static 'img/image.jpg' %}" alt="Image" class="center-image">
+                    </div>
+
+                    <div class="social-buttons">
+                        <button class="like-button">Like</button>
+                        <button class="comment-button">Comment</button>
+                        <button class="share-button">Share</button>
+                    </div>
+                </div>
+
+                <div class="post-container">
+                    <div class="profile-info">
+                        <div class="profile-pic-circle"></div>
+                        <div class="profile-details">
+                            <div class="profile-name">John Doe</div>
+                            <div class="publish-date">December 27, 2023</div>
+                        </div>
+                    </div>
+
+                    <div class="image-area">
+                        <img src="{% static 'img/image.jpg' %}" alt="Image" class="center-image">
+                    </div>
+
+                    <div class="social-buttons">
+                        <button class="like-button">Like</button>
+                        <button class="comment-button">Comment</button>
+                        <button class="share-button">Share</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-container">
+            <div class="people-viewed">
+                <h2>People Also Viewed</h2>
+                <div class="user-container">
+                    <div class="user-pic"></div>
+                    <div class="user-info">
+                        <div class="user-name">User 1</div>
+                        <div class="user-designation">Designer</div>
+                    </div>
+                    <div class="icon"><span class="material-symbols-outlined">person_add</span></div>
+                </div>
+                <!-- Add other user-container elements here -->
+            </div>
+
+            <div class="notifications">
+                <h2>Notifications</h2>
+                <div class="user-container">
+                    <div class="user-pic"></div>
+                    <div class="user-info">
+                        <div class="user-name">Notification 1</div>
+                        <div class="user-designation">Liked your post</div>
+                    </div>
+                    <div class="icon"><span class="material-symbols-outlined">group</span></div>
+                </div>
+                <!-- Add other user-container elements here -->
+            </div>
+        </div>
+    </main>
+    {% endblock %}
