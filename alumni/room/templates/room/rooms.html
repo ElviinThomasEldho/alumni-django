@@ -3,19 +3,39 @@
 {% block title %}Rooms | {% endblock %}
 
 {% block content %}
-<div class="p-10 lg:p-20 text-center">
-    <h1 class="text-3xl lg:text-6xl text-white">Rooms</h1>
-</div>
+<div class="flex flex-wrap">
 
-<div class="w-full flex flex-wrap items-center">
-    {% for room in rooms %}
-        <div class="w-full lg:w-1/4 px-3 py-3">
-            <div class="p-4 bg-white shadow rounded-xl text-center">
-                <h2 class="mb-5 text-2xl font-semibold">{{ room.name }}</h2>
+    <!-- Left Column (30%) -->
+    <div class="w-full lg:w-1/3 px-3 py-3">
+        <!-- Rooms -->
+        <div class="p-4 bg-white shadow rounded-xl text-center mb-5">
+            <h2 class="mb-5 text-2xl font-semibold">Groups</h2>
 
-                <a href="{% url 'room' room.slug %}" class="px-5 py-3 block rounded-xl text-white bg-teal-600 hover:bg-teal-700">Join</a>
-            </div>
+            <ul>
+                {% for room in rooms %}
+                    <li class="border-2 border-gray-300 my-2 py-2 px-4">
+                        <a href="{% url 'room' room.slug %}" class="room-link text-teal-600 hover:underline">{{ room.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
-    {% endfor %}
+
+        <!-- Create New Room -->
+        <div class="p-4 bg-white shadow rounded-xl text-center">
+            <h2 class="mb-5 text-2xl font-semibold">Create New Group</h2>
+
+            <form id="chat-form" method="post" action="{% url 'create_room' %}" class="flex items-center">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="Room Name" class="w-3/4 px-3 py-2 border rounded-lg mr-2" autocomplete="off">
+                <button type="submit" class="px-5 py-3 rounded-xl text-white bg-teal-600 hover:bg-teal-700">Create</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Right Column (70%) -->
+    <div id="room-content" class="w-full lg:w-2/3 px-3 py-3">
+
+    </div>
+
 </div>
 {% endblock %}

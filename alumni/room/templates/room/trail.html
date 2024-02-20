@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <style>
+    body {
+      background-color: #f2f2f2;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100vh;
+    }
+
+    .chat-container {
+      max-width: 768px;
+      margin: 0 auto;
+      padding: 20px;
+      width: 100vw;
+      height: calc(100vh - 100px);
+      overflow-y: auto;
+    }
+
+    .message-box {
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-right: auto; /* Move to the left side */
+      margin-left: 20px; /* Add some space */
+    }
+
+    .message-author {
+      font-weight: bold;
+    }
+
+    .msg-inputs {
+      width: 80vw;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      margin: 0 auto; /* Center horizontally */
+    }
+
+    .msg-input[type=text] {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      margin-right: 10px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .send-btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .send-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+    <h1>My Room</h1>
+  <div class="chat-container">
+    <div class="message-box">
+      <span class="message-author">User 1:</span>
+      <span class="message-content">Hello, how are you today?</span>
+    </div>
+    <div class="message-box">
+      <span class="message-author">You:</span>
+      <span class="message-content">I'm fine, thanks for asking!</span>
+    </div>
+  </div>
+  <div class="msg-inputs">
+    <input
+      class="msg-input"
+      type="text"
+      placeholder="Type a message"
+      name="message"
+      id="message"
+      onkeydown="handleKeyDown(event)"
+    />
+    <button class="send-btn" type="button" name="send" id="send-btn" onclick="sendMessage()">
+      Send
+    </button>
+  </div>
+</body>
+</html>
