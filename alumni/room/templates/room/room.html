@@ -17,39 +17,39 @@
         }
 
         nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 20px;
-        background-color: #fff;
-        border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
         }
 
         .logo {
-        width: 80px;
-        height: 80px;
+            width: 80px;
+            height: 80px;
         }
 
         .nav-items {
-        list-style: none;
-        display: flex;
-        margin: 0;
-        padding: 0;
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
         }
 
         .nav-items li {
-        margin-right: 4rem;
+            margin-right: 4rem;
         }
 
         .nav-items a {
-        text-decoration: none;
-        color: #333;
+            text-decoration: none;
+            color: #333;
         }
 
         .profile-pic {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
         }
 
         .container {
@@ -62,38 +62,80 @@
             flex: 0 0 30%;
             background-color: #f2f2f2;
             border-right: 1px solid #ddd;
-            overflow-y: auto;
             padding: 10px;
             height: calc(100vh - 80px);
             max-height: calc(100vh - 80px); 
+            display: flex;
+            flex-direction: column;
         }
 
-        .rooms-container,
-        .create-room-container,
-        .users-container {
+        .rooms-container {
             border: 1px solid #ddd;
             background-color: #fff;
             padding: 10px;
             margin-bottom: 10px;
             border-radius: 12px;
+            flex-grow: 1;
+            overflow-y: auto; /* Allow overflow in rooms-container */
         }
 
-        .rooms-container h2,
-        .create-room-container h2,
-        .users-container h2 {
+
+        .rooms-container h2 {
             font-size: 24px;
             margin-top: 0;
         }
 
-        .rooms-container li,
-        .users-container li {
-            border: 2px solid #ddd;
-            border-radius: 12px;
+        .rooms-container ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .rooms-container li {
+            border: 1px solid #ddd;
+            border-radius: 8px;
             padding: 12px;
-            margin-top: 8px;
+            margin-top: 4px;
+        }
+
+        .create-room-container {
+            border: 1px solid #ddd;
+            background-color: #fff;
+            padding: 10px;
+            margin-top: auto;
+            border-radius: 12px;
+            z-index: 1; /* Ensure it is above other content */
+            display: none; /* Initially hidden */
+        }
+
+        .show-create-room {
+            bottom: 20px;
+            margin-top: 12px;
+            margin-left: auto;
+            width: 50px;
+            height: 50px;
+            padding: 8px;
+            background-color: #af4242;
+            border-radius: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 3; /* Ensure it is above other content */
+        }
+
+        .create-room-container h2 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+        .create-room-container form {
+            display: flex;
+            align-items: center;
         }
 
         .create-room-container input {
+            flex: 1;
             padding: 12px;
             border: 2px solid #ddd;
             border-radius: 12px;
@@ -107,12 +149,24 @@
             border-radius: 12px;
         }
 
+        .room-name {
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            font-size: 24px;
+            padding: 16px;
+            border-bottom: 1px solid #ddd;
+            z-index: 2;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
         .chat-area {
             flex: 1;
             display: flex;
             flex-direction: column;
             height: calc(100vh - 80px);
             max-height: calc(100vh - 80px);
+            overflow: hidden;
         }
 
         .chat-messages {
@@ -120,19 +174,22 @@
             overflow-y: auto;
             padding: 20px;
             background-color: #fff;
+            border-bottom: 1px solid #ddd;
         }
 
         .message {
             margin-bottom: 10px;
+            width: fit-content;
+            max-width: 80%;
             padding: 10px;
-            background-color: #e2f7fe;
+            background-color: #ffecec;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .message-user {
             font-weight: bold;
-            color: #075e54;
+            color: #af4242;
         }
 
         .message-content {
@@ -149,20 +206,52 @@
 
         .input-area input {
             flex: 1;
-            padding: 8px;
+            padding: 12px;
             border: 1px solid #ddd;
             border-radius: 20px;
             margin-right: 10px;
         }
 
         .input-area button {
+            width: 60px;
             padding: 8px 15px;
             border: none;
             border-radius: 20px;
-            background-color: #075e54;
+            background-color: #ff9595;
             color: #fff;
             cursor: pointer;
         }
+        
+
+        /* Hide the default scrollbar */
+        .rooms-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Style the container to make it scrollable */
+        .rooms-container {
+            overflow-y: auto;
+            scrollbar-width: thin; /* For Firefox */
+            scrollbar-color: #ccc #f2f2f2; /* For Firefox */
+        }
+
+        /* Style the scrollbar track */
+        .rooms-container::-webkit-scrollbar-track {
+            background: #f2f2f2;
+        }
+
+        /* Style the scrollbar thumb */
+        .rooms-container::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 10px;
+        }
+
+        /* Style the scrollbar corner */
+        .rooms-container::-webkit-scrollbar-corner {
+            background: #f2f2f2;
+        }
+
+
     </style>
 </head>
 <body>
@@ -179,25 +268,16 @@
     <div class="container">
         <div class="sidebar">
             <div class="rooms-container">
-                <h2>Groups</h2>
                 <ul>
                     {% for r in rooms %}
-                        <li><a href="{% url 'room' r.slug %}">{{ r.name }}</a></li>
+                        <a href="{% url 'room' r.slug %}"><li>{{ r.name }}</li></a>
+                    {% endfor %}
+                    {% for user in users %}
+                    <a href="{% url 'create_personal_room' user.username %}"><li>{{ user.username }}</li></a>
                     {% endfor %}
                 </ul>
-            </div>            
-            <div class="users-container">
-                <h2>Users</h2>
-                <ul>
-                    {% for user in users %}
-                        <li>
-                            <a href="{% url 'create_personal_room' user.username %}">
-                                {{ user.username }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>                           
             </div>
+            
             <div class="create-room-container">
                 <h2>Create New Group</h2>
                 <form method="post" action="{% url 'create_room' %}">
@@ -206,8 +286,11 @@
                     <button type="submit">Create</button>
                 </form>
             </div>
+
+            <img src="{% static 'img/plus.png' %}" alt="Create Room" class="show-create-room" id="show-create-room">
         </div>
         <div class="chat-area">
+            <div class="room-name" id="room-name">{{ room.name }}</div>
             <div class="chat-messages" id="chat-messages">
                 {% for m in messages %}
                     <div class="message">
@@ -217,11 +300,16 @@
                 {% endfor %}
             </div>
             <div class="input-area">
-                <input type="text" name="content" placeholder="Type a message...">
-                <button id="send-button">Send</button>
+                <input type="text" name="content" placeholder="Type a message..." autocomplete="off">
+                <button id="send-button"><img src="{% static 'img/send.png' %}" alt="Send"></button>
             </div>
         </div>
     </div>
+
+    <script>
+        const plusImgUrl = "{% static 'img/plus.png' %}";
+        const closeImgUrl = "{% static 'img/close.png' %}";
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -237,7 +325,7 @@
                 + roomName
                 + '/'
             );
-
+    
             chatSocket.onmessage = function(e) {
                 const data = JSON.parse(e.data);
                 const messageDiv = document.createElement('div');
@@ -249,10 +337,18 @@
                 chatMessages.appendChild(messageDiv);
                 scrollToBottom();
             };
-
-            sendButton.addEventListener('click', function() {
+    
+            sendButton.addEventListener('click', sendMessage);
+            messageInput.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    sendMessage();
+                }
+            });
+    
+            function sendMessage() {
                 const message = messageInput.value.trim();
-
+    
                 if (message !== '') {
                     chatSocket.send(JSON.stringify({
                         'message': message,
@@ -262,15 +358,23 @@
                     messageInput.value = '';
                     scrollToBottom();
                 }
-            });
-
+            }
+    
             function scrollToBottom() {
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             }
-
+    
             scrollToBottom();
         });
+
+        document.getElementById('show-create-room').addEventListener('click', function() {
+            const createRoomContainer = document.querySelector('.create-room-container');
+            createRoomContainer.style.display = createRoomContainer.style.display === 'none' ? 'block' : 'none';
+            this.src = createRoomContainer.style.display === 'none' ? plusImgUrl : closeImgUrl;
+        });
+
     </script>
+    
 
 </body>
 </html>
