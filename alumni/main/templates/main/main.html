@@ -37,7 +37,7 @@
         <li><a href="{% url 'home' %}">Home</a></li>
         <li><a href="{% url 'feed' %}">Feed</a></li>
         <li><a href="#">Jobs</a></li>
-        <li><a href="#">Chats</a></li>
+        <li><a href="{% url 'rooms' %}">Chats</a></li>
       </ul>
       <a href="{% url 'profile' %}">
         {% if request.user.is_authenticated %}
