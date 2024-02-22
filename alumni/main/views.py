@@ -54,6 +54,18 @@ def profile(request):
 def viewProfile(request):
     return render(request, 'main/viewProfile.html')
 
+@authenticated_user
+def followAccount(request, id):
+    account = Account.objects.get(user=request.user)
+    target = Account.objects.get(id=id)
+    account.following.add(target)
+    return redirect('profile')
+
+
+def viewProfile(request):
+    return render(request, 'main/viewProfile.html')
+
+
 
 @authenticated_user
 def feed(request):
