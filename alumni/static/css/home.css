@@ -10,9 +10,6 @@
   scroll-behavior: smooth;
 }
 
-img {
-  /* width: 100%; */
-}
 
 /*Scrool Bar*/
 /* width */
@@ -512,10 +509,11 @@ span{
     
 
 }
-img{
-    width: 70px;
-  height: 70px;
-  border: none;
+
+.pics img{
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 

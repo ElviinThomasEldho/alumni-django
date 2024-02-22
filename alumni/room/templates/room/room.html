@@ -258,12 +258,13 @@
     <nav>
         <a href="#"><img src="{% static 'img/rset-logo.png' %}" alt="RSET Logo" class="logo"></a>
         <ul class="nav-items">
-            <li><a href="#">Home</a></li>
+            <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="#">My Networks</a></li>
             <li><a href="#">Jobs</a></li>
             <li><a href="#">Chats</a></li>
         </ul>
 
+        <img src="/static{{account.profilePicture.url}}" alt="Profile Picture" class="profile-pic"/>
     </nav>
     <div class="container">
         <div class="sidebar">
