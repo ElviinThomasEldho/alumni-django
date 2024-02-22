@@ -4,8 +4,8 @@ from room import routing as room_routing
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('core.urls')),
-    path('main/', include('main.urls')),
-    path('rooms/', include('room.urls')),  # Include the 'room' app URLs under 'rooms/'
+    path('core/', include('core.urls')),
+    path('', include('main.urls')),
+    path('rooms/', include('room.urls')),
     path('ws/', include(room_routing.websocket_urlpatterns)),
 ]

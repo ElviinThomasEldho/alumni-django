@@ -1,40 +1,119 @@
-{% extends './main.html' %}
 {% load static %}
 
-{% block content %}
 
-<form method="POST" action="">
-    {% csrf_token %}
-    <div class="form-heading">
-        <h2>Welcome Back!</h2>
-    </div>
-    <div class="container">
-        <p>Enter your username and password below to login</p>
-        <table>
-            <tbody>
-                <tr>
-                    <td><label for="username">Username</label></td>
-                    <td><input type="text" name="username" style="width: 85%;"></td>
-                </tr>
-                <tr>
-                    <td><label for="password">Password</label></td>
-                    <td>
-                        <div style="display: flex; justify-content: start; align-items: center;">
-                            <input type="password" id="password" name="password" data-toggle="password">                                
-                            <a class="btn btn-icon" href="#"><img class="icon" id="togglePassword" src="{% static '/icons/eye.png' %}" alt=""></a>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        {{ form.errors }}
-        <a href="#" style="color:black;">Forgot Password?</a>
-        {% for message in messages %}
-        <p>{{message}}</p><br>
-        {% endfor %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
     
-        <button class="btn btn-secondary" type="submit" name="Submit">Login</button>
-    </div>
-</form>
+    <style>
+        
+        @import url('https://fonts.cdnfonts.com/css/sf-pro-display'); 
 
-{% endblock %}
+        * {
+            font-family: "SF Pro Display", sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f3f4f6;
+        }
+
+        img {
+            max-width: 120px;
+        }
+
+        .container {
+            display: flex;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .container * {
+            width: 100%;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            max-width: 60%;
+            padding: 10px;
+            margin-top: 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #3490dc;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2779bd;
+        }
+
+        .error {
+            margin-top: 8px;
+            padding: 8px;
+            border-radius: 4px;
+            background-color: #f9a8a8;
+            color: #721c24;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="{% static 'img/rset-logo.png' %}" alt="RSET Logo" class="logo">
+        <h1 style="text-align: center; margin-bottom: 20px;">Log In</h1>
+        <form method="post" action=".">
+            {% csrf_token %}
+            <div>
+                <input type="text" id="username" name="username" placeholder="Username" required>
+            </div>
+            <div>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+            {% if form.errors %}
+            <div class="error">
+                {% for field in form %}
+                {% for error in field.errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            <button type="submit">Log in</button>
+        </form>
+    </div>
+</body>
+
+</html>
