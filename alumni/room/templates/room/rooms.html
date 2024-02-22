@@ -1,21 +1,201 @@
-{% extends 'core/base.html' %}
+{% load static %}
 
-{% block title %}Rooms | {% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rooms</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
 
-{% block content %}
-<div class="p-10 lg:p-20 text-center">
-    <h1 class="text-3xl lg:text-6xl text-white">Rooms</h1>
-</div>
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+        }
 
-<div class="w-full flex flex-wrap items-center">
-    {% for room in rooms %}
-        <div class="w-full lg:w-1/4 px-3 py-3">
-            <div class="p-4 bg-white shadow rounded-xl text-center">
-                <h2 class="mb-5 text-2xl font-semibold">{{ room.name }}</h2>
+        .logo {
+            width: 80px;
+            height: 80px;
+        }
 
-                <a href="{% url 'room' room.slug %}" class="px-5 py-3 block rounded-xl text-white bg-teal-600 hover:bg-teal-700">Join</a>
+        .nav-items {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-items li {
+            margin-right: 4rem;
+        }
+
+        .nav-items a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .profile-pic {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        .container {
+            display: flex;
+            max-height: 100vh;
+            overflow-y: hidden;
+        }
+
+        .sidebar {
+            flex: 0 0 30%;
+            background-color: #f2f2f2;
+            border-right: 1px solid #ddd;
+            padding: 10px;
+            height: calc(100vh - 80px);
+            max-height: calc(100vh - 80px); 
+            display: flex;
+            flex-direction: column;
+        }
+
+        .rooms-container {
+            border: 1px solid #ddd;
+            background-color: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 12px;
+            flex-grow: 1;
+            overflow-y: auto; /* Allow overflow in rooms-container */
+        }
+
+        .rooms-container h2 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+        .rooms-container ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .rooms-container li {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 4px;
+        }
+
+        .create-room-container {
+            border: 1px solid #ddd;
+            background-color: #fff;
+            padding: 10px;
+            margin-top: auto;
+            border-radius: 12px;
+            z-index: 1; /* Ensure it is above other content */
+            display: none; /* Initially hidden */
+        }
+
+        .create-room-container h2 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+        .create-room-container form {
+            display: flex;
+            align-items: center;
+        }
+
+        .create-room-container input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            margin-top: 8px;
+        }
+
+        .create-room-container button {
+            background-color: antiquewhite;
+            padding: 12px;
+            margin-left: 12px;
+            border-radius: 12px;
+        }
+
+        .show-create-room {
+            bottom: 20px;
+            margin-top: 12px;
+            margin-left: auto;
+            width: 50px;
+            height: 50px;
+            padding: 8px;
+            background-color: #af4242;
+            border-radius: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 3; /* Ensure it is above other content */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#"><img src="{% static 'img/rset-logo.png' %}" alt="RSET Logo" class="logo"></a>
+        <ul class="nav-items">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">My Networks</a></li>
+            <li><a href="#">Jobs</a></li>
+            <li><a href="#">Chats</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="sidebar">
+            <div class="rooms-container">
+                <ul>
+                    {% for r in rooms %}
+                        <a href="{% url 'room' r.slug %}"><li>{{ r.name }}</li></a>
+                    {% endfor %}
+                    {% for user in users %}
+                    <a href="{% url 'create_personal_room' user.username %}"><li>{{ user.username }}</li></a>
+                    {% endfor %}
+                </ul>
             </div>
+            <div class="create-room-container">
+                <h2>Create New Room</h2>
+                <form method="post" action="{% url 'create_room' %}">
+                    {% csrf_token %}
+                    <input type="text" name="name" placeholder="Room Name">
+                    <button type="submit">Create</button>
+                </form>
+            </div>
+            <img src="{% static 'img/plus.png' %}" alt="Create Room" class="show-create-room" id="show-create-room">
         </div>
-    {% endfor %}
-</div>
-{% endblock %}
+        <div class="chat-area">
+            <!-- Your chat area content -->
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const plusImgUrl = "{% static 'img/plus.png' %}";
+            const closeImgUrl = "{% static 'img/close.png' %}";
+
+            document.getElementById('show-create-room').addEventListener('click', function() {
+                const createRoomContainer = document.querySelector('.create-room-container');
+                createRoomContainer.style.display = createRoomContainer.style.display === 'none' ? 'block' : 'none';
+                this.src = createRoomContainer.style.display === 'none' ? plusImgUrl : closeImgUrl;
+            });
+        });
+    </script>
+</body>
+</html>
