@@ -1,3 +1,7 @@
+* {
+  font-family: "SF Pro Display", sans-serif;
+}
+
 body {
     font-family: sans-serif;
     margin: 0;
@@ -7,6 +11,8 @@ body {
     color: #333;
     background-color: #D9D9D9;
   }
+
+
   
   nav {
     display: flex;

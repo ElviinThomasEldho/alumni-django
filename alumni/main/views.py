@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 
 from .decorators import *
+from .models import *
 
 # Create your views here.
 @unauthenticated_user
@@ -49,4 +50,10 @@ def viewProfile(request):
 
 @authenticated_user
 def feed(request):
-    return render(request, 'main/feed.html')
+    account = Account.objects.get(user=request.user)
+    
+    context = {
+        "account":account
+    }
+    
+    return render(request, 'main/feed.html', context)
