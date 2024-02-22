@@ -58,9 +58,9 @@
           <div class="user-name">{{recommendation.firstName}} {{recommendation.lastName}}</div>
           <div class="user-designation">{{recommendation.role}}</div>
         </div>
-        <div class="icon">
+        <a class="icon" href="{% url 'followAccount' recommendation.id %}">
           <span class="material-symbols-outlined">person_add</span>
-        </div>
+        </a>
       </div>
       {% endfor %}
       <!-- Add other user-container elements here -->
