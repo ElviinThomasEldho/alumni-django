@@ -32,7 +32,7 @@ def registerUser(request):
 @authenticated_user
 def logoutUser(request):
     logout(request)
-    return redirect('login')
+    return redirect('loginUser')
 
 
 def home(request):
