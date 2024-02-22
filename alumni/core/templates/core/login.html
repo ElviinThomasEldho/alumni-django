@@ -1,37 +1,119 @@
-{% extends 'core/base.html' %}
+{% load static %}
 
-{% block title %}Log in | {% endblock %}
 
-{% block content %}
-<div class="p-10 lg:p-20 text-center">
-    <h1 class="text-3xl lg:text-6xl text-white">Log in</h1>
-</div>
+<!DOCTYPE html>
+<html lang="en">
 
-<form method="post" action="." class="lg:w-1/4 px-4 mx-auto">
-    {% csrf_token %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+    
+    <style>
+        
+        @import url('https://fonts.cdnfonts.com/css/sf-pro-display'); 
 
-    <div class="mb-5">
-        <label class="text-white">Username</label>
+        * {
+            font-family: "SF Pro Display", sans-serif;
+        }
 
-        <input type="text" name="username" class="w-full mt-2 px-4 py-2 rounded-xl">
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f3f4f6;
+        }
+
+        img {
+            max-width: 120px;
+        }
+
+        .container {
+            display: flex;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .container * {
+            width: 100%;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            max-width: 60%;
+            padding: 10px;
+            margin-top: 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #3490dc;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2779bd;
+        }
+
+        .error {
+            margin-top: 8px;
+            padding: 8px;
+            border-radius: 4px;
+            background-color: #f9a8a8;
+            color: #721c24;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="{% static 'img/rset-logo.png' %}" alt="RSET Logo" class="logo">
+        <h1 style="text-align: center; margin-bottom: 20px;">People Also Viewed</h1>
+        <form method="post" action=".">
+            {% csrf_token %}
+            <div>
+                <input type="text" id="username" name="username" placeholder="Username" required>
+            </div>
+            <div>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+            {% if form.errors %}
+            <div class="error">
+                {% for field in form %}
+                {% for error in field.errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+                {% endfor %}
+            </div>
+            {% endif %}
+            <button type="submit">Log in</button>
+        </form>
     </div>
+</body>
 
-    <div class="mb-5">
-        <label class="text-white">Password</label>
-
-        <input type="password" name="password" class="w-full mt-2 px-4 py-2 rounded-xl">
-    </div>
-
-    {% if form.errors %}
-        {% for field in form %}
-            {% for error in field.errors %} 
-                <div class="mb-5 p-4 rounded-xl bg-red-300 text-white">
-                    <p>{{ error|escape }}</p>
-                </div>
-            {% endfor %}
-        {% endfor %}
-    {% endif %}
-
-    <button class="px-5 py-3 rounded-xl text-white bg-teal-800 hover:bg-teal-700">Log in</button>
-</form>
-{% endblock %}
+</html>
