@@ -8,34 +8,21 @@
       <img src="{% static 'img/image.jpg' %}" alt="Image" class="left-image" />
       <a href="#"
         ><img
-          src="/static"
+          src="/static{{account.profilePicture.url}}"
           alt="Profile Picture"
           class="left-profile-pic"
       /></a>
-      <h1>Gautham C Sudheer</h1>
-      <h3>Lead Product Designer at Google</h3>
-      <p>Silicon Valley, California</p>
-      <p>10 Posts &nbsp;&nbsp; 500 Connections</p>
+      <h1>{{account.firstName}} {{account.lastName}}</h1>
+      <h3>{{account.role}} {% if account.organisation %} | {{account.organisation}} {% endif %} </h3>
+      <p>{{account.location}}</p>
+      <p>{{posts.count}} Posts &nbsp;&nbsp; {{account.followers.count}} Followers &nbsp;&nbsp; {{account.following.count}} Following</p>
       <button class="edit">Edit Info</button>
     </div>
 
     <div class="about-container">
       <h1>About</h1>
       <p>
-        I am a Computer Science & Engineer undergraduate student at Rajagiri
-        School of Engineering & Technology. My passion for helping others
-        publish their skills and talents using the digital platform has been
-        evident in my involvement in bundling a few projects. Through those
-        experiences, I have learned to interact with a diverse group of people,
-        which has increased my ability to relate to others. I have also had the
-        opportunity to create websites for individuals that focused on life
-        skills like teamwork, communication, and time management. Website and
-        App development were my gateway to the creative industry which inspired
-        me to start my own projects and to take the first steps in the digital
-        world. I have a thorough understanding of front-end development. I have
-        been mostly involved in establishing effective client relationships. I
-        have also developed a superior understanding of client service and
-        client relationship with the span of time.
+        {{account.bio}}
       </p>
     </div>
 

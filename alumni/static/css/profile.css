@@ -52,6 +52,8 @@ nav {
     width: 60px;
     height: 60px;
     border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
 }
 
 main {
@@ -94,6 +96,8 @@ main {
     left: 15%;
     transform: translate(-50%, -50%);
     z-index: 1;
+    object-fit: cover;
+    object-position: center;
 }
 
 .profile-container h1 {

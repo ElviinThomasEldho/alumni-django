@@ -218,8 +218,9 @@ main {
   height: 40px;
   border-radius: 50%;
   margin-right: 10px;
-  background-image: url('profile-pic.jpeg');
   background-size: cover;
+  object-fit: cover;
+  object-position: center;
 }
 
 .user-container .user-info {

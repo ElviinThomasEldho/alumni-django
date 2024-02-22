@@ -50,37 +50,19 @@
 
   <div class="right-container">
     <div class="people-viewed">
-      <h2>People Also Viewed</h2>
+      <h2>You may also know</h2>
+      {% for recommendation in recommendations %}
       <div class="user-container">
-        <div class="user-pic"></div>
+        <img class="user-pic" src="/static{{recommendation.profilePicture.url}}" >
         <div class="user-info">
-          <div class="user-name">User 1</div>
-          <div class="user-designation">Designer</div>
+          <div class="user-name">{{recommendation.firstName}} {{recommendation.lastName}}</div>
+          <div class="user-designation">{{recommendation.role}}</div>
         </div>
         <div class="icon">
           <span class="material-symbols-outlined">person_add</span>
         </div>
       </div>
-      <div class="user-container">
-        <div class="user-pic"></div>
-        <div class="user-info">
-          <div class="user-name">User 1</div>
-          <div class="user-designation">Designer</div>
-        </div>
-        <div class="icon">
-          <span class="material-symbols-outlined">person_add</span>
-        </div>
-      </div>
-      <div class="user-container">
-        <div class="user-pic"></div>
-        <div class="user-info">
-          <div class="user-name">User 1</div>
-          <div class="user-designation">Designer</div>
-        </div>
-        <div class="icon">
-          <span class="material-symbols-outlined">person_add</span>
-        </div>
-      </div>
+      {% endfor %}
       <!-- Add other user-container elements here -->
     </div>
 

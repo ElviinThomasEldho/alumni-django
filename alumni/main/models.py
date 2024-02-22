@@ -21,8 +21,9 @@ class Account(models.Model):
     mobileNumber = models.CharField('Mobile Number', max_length=13, null=True)
     emailID = models.EmailField('Email Address', null=True)
 
-    
+    bio = models.CharField('Bio', max_length=2555, null=True)
     role = models.CharField('Role', max_length=255, null=True)
+    organisation = models.CharField('Organisation', max_length=255, null=True, blank=True)
     location = models.CharField('Location', max_length=255, null=True)
 
     # Followers
