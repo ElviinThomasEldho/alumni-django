@@ -1,0 +1,51 @@
+# Django
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+
+# Virtual environment
+venv/
+env/
+
+# Logs
+*.log
+
+# Secret key
+*.secret
+
+# Media files
+media/
+
+# Static files
+static/
+
+# Database
+db.sqlite3
+
+# Compiled Python bytecode
+__pycache__/
+
+# Local development settings
+local_settings.py
+
+# macOS
+.DS_Store
+
+# Editor configuration
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+*.ipr
+*.iws
+*.ids
+*.pyt
+*.pyw
+*.bak
+*.swp
