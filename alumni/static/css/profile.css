@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 body {
-    font-family: sans-serif;
+    font-family: poppins;
     margin: 0;
     padding: 0;
     font-size: 16px;
@@ -64,6 +66,7 @@ main {
     flex-direction: column;
     max-width: 1024px;
     margin-right: 40px;
+
 }
 
 .profile-container {
@@ -96,8 +99,16 @@ main {
 .profile-container h1 {
     margin-top: 80px;
     margin-left: 40px;
+    margin-bottom: 0px;
     color: #333;
+    font-size: 2.5rem;
 }
+
+.profile-container h3{
+    margin-top: 0px;
+}
+
+
 
 .profile-container h3,
 .profile-container p {
@@ -107,12 +118,21 @@ main {
 
 .profile-container button {
     margin-top: 10px;
-    width: 100px;
-    height: 30px;
+    width: 150px;
+    height: 40px;
     border-radius: 8px;
     color: white;
     margin-left: 40px;
     background-color: #dc444b;
+    margin-bottom: 20px;
+    font-weight: bold;
+    border: none;
+}
+
+.profile-container button:hover{
+    background-color: white;
+    color: #dc444b;
+    border: #333 solid;
 }
 
 .about-container,
@@ -124,6 +144,7 @@ main {
     padding: 10px 40px;
     background-color: #fff;
     border-radius: 24px;
+    padding-bottom: 20px;
 }
 
 .about-container p {
@@ -182,8 +203,8 @@ main {
 }
 
 .profile-pic-circle {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background-image: url('profile-pic.jpeg');
     background-size: cover;
@@ -198,7 +219,7 @@ main {
 
 .profile-name {
     font-weight: bold;
-    margin-bottom: 4px;
+    font-size: 1.5rem;
 }
 
 .publish-date {

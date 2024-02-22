@@ -1,33 +1,39 @@
-{% extends './main.html' %} {% load static %} 
-{% block head %}
+{% extends './main.html' %} {% load static %} {% block head %}
 <link rel="stylesheet" href="{% static 'css/feed.css' %}" />
-{% endblock %} 
-{% block content %}
+{% endblock %} {% block content %}
 <main>
   <div class="left-container">
     <img src="{% static 'img/image.jpg' %}" alt="Image" class="left-image" />
-    <a href="#"
+    <a href="{% url 'profile' %}"
       ><img
-        src="{% static 'img/profile-pic.jpeg' %}"
+        src="/static{{account.profilePicture.url}}"
         alt="Profile Picture"
         class="left-profile-pic"
     /></a>
-    <h3>Welcome Gautham!</h3>
+    <h3>Welcome {{account.firstName}}!</h3>
   </div>
 
   <div class="container">
+    {% for post in posts %}
     <div class="center-container">
       <div class="profile-info">
-        <div class="profile-pic-circle"></div>
+        <img
+          class="profile-pic-circle"
+          src="/static{{post.account.profilePicture.url}}"
+          alt=""
+        />
+
         <div class="profile-details">
-          <div class="profile-name">John Doe</div>
-          <div class="publish-date">December 27, 2023</div>
+          <div class="profile-name">
+            {{post.account.firstName}} {{post.account.lastName}}
+          </div>
+          <div class="publish-date">{{post.date_created}}</div>
         </div>
       </div>
 
       <div class="image-area">
         <img
-          src="{% static 'img/image.jpg' %}"
+          src="/static{{post.image.url}}"
           alt="Image"
           class="center-image"
         />
@@ -39,30 +45,7 @@
         <button class="share-button">Share</button>
       </div>
     </div>
-
-    <div class="center-container">
-      <div class="profile-info">
-        <div class="profile-pic-circle"></div>
-        <div class="profile-details">
-          <div class="profile-name">John Doe</div>
-          <div class="publish-date">December 27, 2023</div>
-        </div>
-      </div>
-
-      <div class="image-area">
-        <img
-          src="{% static 'img/image.jpg' %}"
-          alt="Image"
-          class="center-image"
-        />
-      </div>
-
-      <div class="social-buttons">
-        <button class="like-button">Like</button>
-        <button class="comment-button">Comment</button>
-        <button class="share-button">Share</button>
-      </div>
-    </div>
+    {% endfor %}
   </div>
 
   <div class="right-container">
@@ -109,9 +92,7 @@
           <div class="user-name">Notification 1</div>
           <div class="user-designation">Liked your post</div>
         </div>
-        <div class="icon">
-          <span class="material-symbols-outlined">group</span>
-        </div>
+        <!-- <div class="icon"><span class="material-symbols-outlined">group</span></div> -->
       </div>
       <div class="user-container">
         <div class="user-pic"></div>
@@ -119,9 +100,7 @@
           <div class="user-name">Notification 1</div>
           <div class="user-designation">Liked your post</div>
         </div>
-        <div class="icon">
-          <span class="material-symbols-outlined">group</span>
-        </div>
+        <!-- <div class="icon"><span class="material-symbols-outlined">group</span></div> -->
       </div>
       <!-- Add other user-container elements here -->
     </div>

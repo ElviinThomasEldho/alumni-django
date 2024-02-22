@@ -42,9 +42,9 @@
       <a href="{% url 'profile' %}">
         {% if request.user.is_authenticated %}
         <img
-          src="{{account.profilePicture.path}}"
-          alt="RSET Logo"
-          class="logo"
+          src="/static{{account.profilePicture.url}}"
+          alt="logo"
+          class="profile-pic"
         />
         {% else %}<img
           src="{% static 'img/profile-pic.jpeg' %}"

@@ -41,7 +41,14 @@ def home(request):
 
 @authenticated_user
 def profile(request):
-    return render(request, 'main/profile.html')
+    account = Account.objects.get(user=request.user)
+    posts = Post.objects.get(account=account)
+    
+    context = {
+        "account":account,
+        "posts":posts,
+    }
+    return render(request, 'main/profile.html', context)
 
 
 def viewProfile(request):
@@ -51,9 +58,11 @@ def viewProfile(request):
 @authenticated_user
 def feed(request):
     account = Account.objects.get(user=request.user)
+    posts = Post.objects.all()
     
     context = {
-        "account":account
+        "account":account,
+        "posts":posts,
     }
     
     return render(request, 'main/feed.html', context)
