@@ -91,10 +91,16 @@
         }
 
         .rooms-container li {
+            display: flex;
             border: 1px solid #ddd;
             border-radius: 8px;
             padding: 12px;
             margin-top: 4px;
+            align-items: center;
+        }
+
+        .rooms-container img {
+            margin-right: 12px;
         }
 
         .create-room-container {
@@ -164,11 +170,16 @@
         <div class="sidebar">
             <div class="rooms-container">
                 <ul>
+                    {% for a in accounts %}
+                        <a href="{% url 'create_personal_room' a.user.username %}">
+                            <li>
+                                <img src="/static{{a.profilePicture.url}}" alt="Profile Picture" class="profile-pic"/>
+                                {{ a.firstName }} {{ a.lastName }}
+                            </li>
+                        </a>
+                    {% endfor %}
                     {% for r in rooms %}
                         <a href="{% url 'room' r.slug %}"><li>{{ r.name }}</li></a>
-                    {% endfor %}
-                    {% for user in users %}
-                    <a href="{% url 'create_personal_room' user.username %}"><li>{{ user.username }}</li></a>
                     {% endfor %}
                 </ul>
             </div>
