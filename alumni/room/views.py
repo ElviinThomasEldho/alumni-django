@@ -60,7 +60,7 @@ def create_room(request):
         form = RoomForm(request.POST)
         if form.is_valid():
             room = form.save(commit=False)
-            room.slug = slugify(room.name)  # Generate slug from room name
+            room.slug = room.name.replace(' ', '').lower()  # Generate slug from room name
             room.type = 'group'
             room.save()
             return redirect('rooms')
