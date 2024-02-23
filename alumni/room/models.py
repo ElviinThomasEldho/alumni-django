@@ -2,8 +2,13 @@ from django.contrib.auth.models import User
 from django.db import models
 
 class Room(models.Model):
+    TYPES=(('direct', 'direct'),
+           ('group', 'group'))
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
+    users = models.ManyToManyField(User, related_name='users')
+    type = models.CharField(choices=TYPES, default='direct', max_length=255)
+    
 
 
 class Message(models.Model):
