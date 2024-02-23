@@ -4,7 +4,7 @@ import uuid
 from django.contrib.auth.models import User
 from datetime import date
 
-# from room.models import *
+# from room.models import *                           
 
 # Accounts
 class Account(models.Model):
@@ -70,14 +70,7 @@ class Faculty(models.Model):
         return (self.id)
     
 
-# Content
-class Like(models.Model):
-    account = models.ForeignKey(Account, null=True, on_delete=models.CASCADE)
-    date_created = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return (str(self.id) + " | " + str(self.account.id) + " | " + str(self.date_created))
-    
+# Content    
 class Comment(models.Model):
     account = models.ForeignKey(Account, null=True, on_delete=models.CASCADE)
     text = models.CharField('Text', max_length=255, null=True)
@@ -94,7 +87,7 @@ class Post(models.Model):
     caption = models.CharField('Caption', max_length=255, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
 
-    likes = models.ManyToManyField(Like, blank=True)
+    likes = models.ManyToManyField(Account, related_name='Likes', blank=True)
     comments = models.ManyToManyField(Comment, blank=True)
 
     def __str__(self):

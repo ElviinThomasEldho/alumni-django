@@ -13,17 +13,21 @@
           class="left-profile-pic"
       /></a>
       <h1>{{account.firstName}} {{account.lastName}}</h1>
-      <h3>{{account.role}} {% if account.organisation %} | {{account.organisation}} {% endif %} </h3>
+      <h3>
+        {{account.role}} {% if account.organisation %} |
+        {{account.organisation}} {% endif %}
+      </h3>
       <p>{{account.location}}</p>
-      <p>{{posts.count}} Posts &nbsp;&nbsp; {{account.followers.count}} Followers &nbsp;&nbsp; {{account.following.count}} Following</p>
+      <p>
+        {{posts.count}} Posts &nbsp;&nbsp; {{account.followers.count}} Followers
+        &nbsp;&nbsp; {{account.following.count}} Following
+      </p>
       <button class="edit">Edit Info</button>
     </div>
 
     <div class="about-container">
       <h1>About</h1>
-      <p>
-        {{account.bio}}
-      </p>
+      <p>{{account.bio}}</p>
     </div>
 
     <div class="skills-container">
@@ -51,18 +55,22 @@
 
     <div class="posts-container">
       <h1>Posts</h1>
-
+      {% for post in posts %}
       <div class="post-container">
         <div class="profile-info">
-          <div class="profile-pic-circle"></div>
+          <img class="profile-pic-circle" src="/static{{post.account.profilePicture.url}}"></img>
           <div class="profile-details">
-            <div class="profile-name">John Doe</div>
-            <div class="publish-date">December 27, 2023</div>
+            <div class="profile-name">{{post.account.firstName}} {{post.account.lastName}}</div>
+            <div class="publish-date">{{post.date_created}}</div>
           </div>
         </div>
 
         <div class="image-area">
-          <img src="{% static 'img/image.jpg' %}" alt="Image" class="center-image" />
+          <img
+            src="/static{{post.image.url}}"
+            alt="Image"
+            class="center-image"
+          />
         </div>
 
         <div class="social-buttons">
@@ -71,26 +79,7 @@
           <button class="share-button">Share</button>
         </div>
       </div>
-
-      <div class="post-container">
-        <div class="profile-info">
-          <div class="profile-pic-circle"></div>
-          <div class="profile-details">
-            <div class="profile-name">John Doe</div>
-            <div class="publish-date">December 27, 2023</div>
-          </div>
-        </div>
-
-        <div class="image-area">
-          <img src="{% static 'img/image.jpg' %}" alt="Image" class="center-image" />
-        </div>
-
-        <div class="social-buttons">
-          <button class="like-button">Like</button>
-          <button class="comment-button">Comment</button>
-          <button class="share-button">Share</button>
-        </div>
-      </div>
+      {% endfor %}
     </div>
   </div>
 

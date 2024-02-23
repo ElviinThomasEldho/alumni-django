@@ -43,35 +43,58 @@ def home(request):
 def profile(request):
     account = Account.objects.get(user=request.user)
     posts = Post.objects.filter(account=account)
+    recommendations = Account.objects.all().exclude(user=request.user)
     
     context = {
         "account":account,
         "posts":posts,
+        "recommendations":recommendations,
     }
     return render(request, 'main/profile.html', context)
 
+@authenticated_user
+def viewProfile(request, id):
+    account = Account.objects.get(id=id)
+    posts = Post.objects.filter(account=account)
+    recommendations = Account.objects.all().exclude(id=account.id)
+    
+    context = {
+        "account":account,
+        "posts":posts,
+        "recommendations":recommendations,
+    }
+    return render(request, 'main/viewProfile.html', context)
 
-def viewProfile(request):
-    return render(request, 'main/viewProfile.html')
 
 @authenticated_user
 def followAccount(request, id):
     account = Account.objects.get(user=request.user)
     target = Account.objects.get(id=id)
     account.following.add(target)
+    target.followers.add(account)
     return redirect('profile')
 
-
-def viewProfile(request):
-    return render(request, 'main/viewProfile.html')
-
-
+@authenticated_user
+def likePost(request, id):
+    post = Post.objects.get(id=id)
+    account = Account.objects.get(user=request.user)
+    post.likes.add(account)    
+    return redirect('feed')
 
 @authenticated_user
 def feed(request):
     account = Account.objects.get(user=request.user)
     posts = Post.objects.all()
     recommendations = Account.objects.all().exclude(user=request.user)
+    
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        title = request.POST.get('title')
+        print(id, title)
+        
+        comment = Comment.objects.create(account=account, text=title)
+        post = Post.objects.get(id=id)
+        post.comments.add(comment)
     
     context = {
         "account":account,

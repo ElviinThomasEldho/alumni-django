@@ -32,17 +32,29 @@
       </div>
 
       <div class="image-area">
-        <img
-          src="/static{{post.image.url}}"
-          alt="Image"
-          class="center-image"
-        />
+        <img src="/static{{post.image.url}}" alt="Image" class="center-image" />
       </div>
 
       <div class="social-buttons">
-        <button class="like-button">Like</button>
-        <button class="comment-button">Comment</button>
+        <a href="{% url 'likePost' post.id %}" class="like-button">Like ({{ post.likes.count }})</a>
+        <button class="comment-button">
+          Comment ({{ post.comments.count }})
+        </button>
         <button class="share-button">Share</button>
+      </div>
+
+      <div class="comment-container"> 
+        <div class="comments">
+          {% for comment in post.comments.all %}
+          <p>{{comment.text}}</p>
+          {% endfor %}
+        </div>
+        <form method="POST" action="">
+          {% csrf_token  %}
+          <input type="hidden" name="id" value="{{post.id}}">
+          <input type="text" class="text" name="title">
+          <button type="submit">Comment</button>
+        </form>
       </div>
     </div>
     {% endfor %}
@@ -53,9 +65,14 @@
       <h2>You may also know</h2>
       {% for recommendation in recommendations %}
       <div class="user-container">
-        <img class="user-pic" src="/static{{recommendation.profilePicture.url}}" >
+        <img
+          class="user-pic"
+          src="/static{{recommendation.profilePicture.url}}"
+        />
         <div class="user-info">
-          <div class="user-name">{{recommendation.firstName}} {{recommendation.lastName}}</div>
+          <a href="{% url 'viewProfile' recommendation.id %}" class="user-name"
+            >{{recommendation.firstName}} {{recommendation.lastName}}</a
+          >
           <div class="user-designation">{{recommendation.role}}</div>
         </div>
         <a class="icon" href="{% url 'followAccount' recommendation.id %}">
@@ -88,4 +105,5 @@
     </div>
   </div>
 </main>
+
 {% endblock %}

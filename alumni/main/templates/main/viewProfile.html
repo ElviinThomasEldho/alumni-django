@@ -1,0 +1,116 @@
+{% extends './main.html' %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+{% endblock %} {% block content %}
+
+<main>
+  <div class="container">
+    <div class="profile-container">
+      <img src="{% static 'img/image.jpg' %}" alt="Image" class="left-image" />
+      <a href="#"
+        ><img
+          src="/static{{account.profilePicture.url}}"
+          alt="Profile Picture"
+          class="left-profile-pic"
+      /></a>
+      <h1>{{account.firstName}} {{account.lastName}}</h1>
+      <h3>
+        {{account.role}} {% if account.organisation %} |
+        {{account.organisation}} {% endif %}
+      </h3>
+      <p>{{account.location}}</p>
+      <p>
+        {{posts.count}} Posts &nbsp;&nbsp; {{account.followers.count}} Followers
+        &nbsp;&nbsp; {{account.following.count}} Following
+      </p>
+      <button class="edit">Edit Info</button>
+    </div>
+
+    <div class="about-container">
+      <h1>About</h1>
+      <p>{{account.bio}}</p>
+    </div>
+
+    <div class="skills-container">
+      <h1>Skill</h1>
+      <div class="skill-container">
+        <div class="company-pic1"></div>
+        <div class="skill-info">
+          <div class="skill-name">Communication</div>
+          <div class="skill-experience">
+            3 experiences across Google and 1 other company
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-container">
+        <div class="company-pic2"></div>
+        <div class="skill-info">
+          <div class="skill-name">Pipeline Integration</div>
+          <div class="skill-experience">
+            5 experiences across Spotify and 1 other company
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="posts-container">
+      <h1>Posts</h1>
+      {% for post in posts %}
+      <div class="post-container">
+        <div class="profile-info">
+          <img class="profile-pic-circle" src="/static{{post.account.profilePicture.url}}"></img>
+          <div class="profile-details">
+            <div class="profile-name">{{post.account.firstName}} {{post.account.lastName}}</div>
+            <div class="publish-date">{{post.date_created}}</div>
+          </div>
+        </div>
+
+        <div class="image-area">
+          <img
+            src="/static{{post.image.url}}"
+            alt="Image"
+            class="center-image"
+          />
+        </div>
+
+        <div class="social-buttons">
+          <button class="like-button">Like</button>
+          <button class="comment-button">Comment</button>
+          <button class="share-button">Share</button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="right-container">
+    <div class="people-viewed">
+      <h2>People Also Viewed</h2>
+      <div class="user-container">
+        <div class="user-pic"></div>
+        <div class="user-info">
+          <div class="user-name">User 1</div>
+          <div class="user-designation">Designer</div>
+        </div>
+        <div class="icon">
+          <span class="material-symbols-outlined">person_add</span>
+        </div>
+      </div>
+      <!-- Add other user-container elements here -->
+    </div>
+
+    <div class="notifications">
+      <h2>Notifications</h2>
+      <div class="user-container">
+        <div class="user-pic"></div>
+        <div class="user-info">
+          <div class="user-name">Notification 1</div>
+          <div class="user-designation">Liked your post</div>
+        </div>
+        <!-- <div class="icon"><span class="material-symbols-outlined">group</span></div> -->
+      </div>
+      <!-- Add other user-container elements here -->
+    </div>
+  </div>
+</main>
+{% endblock %}
