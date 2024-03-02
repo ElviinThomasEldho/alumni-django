@@ -360,12 +360,10 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const roomName = JSON.parse(
-          document.getElementById("json-roomname").textContent
-        );
-        const userName = JSON.parse(
-          document.getElementById("json-username").textContent
-        );
+        const roomName = "{{room.slug}}";
+
+        const userName = "{{request.user.username}}";
+
         const chatMessages = document.getElementById("chat-messages");
         const messageInput = document.querySelector('input[name="content"]');
         const sendButton = document.getElementById("send-button");
