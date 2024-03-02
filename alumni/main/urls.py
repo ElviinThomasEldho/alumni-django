@@ -10,6 +10,7 @@ urlpatterns = [
     path('feed/', views.feed, name="feed"),
     path('follow/<int:id>/', views.followAccount, name="followAccount"),
     path('unfollow/<int:id>/', views.unfollowAccount, name="unfollowAccount"),
+    path('create-post/', views.createPost, name="createPost"),
     path('like-post/<int:id>/', views.likePost, name="likePost"),
     # Authentication
     path('login/', views.loginUser, name="loginUser"),

@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 
 from .decorators import *
 from .models import *
+from .forms import *
 
 # Create your views here.
 @unauthenticated_user
@@ -88,6 +89,26 @@ def unfollowAccount(request, id):
     return redirect('profile')
 
 @authenticated_user
+def createPost(request):
+    form = PostForm()
+    
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save()
+            post.account = Account.objects.get(user=request.user)
+            post.save()
+
+            return redirect("feed")
+
+    
+    context = {
+        'form':form
+    }
+    
+    return render(request, "main/createPost.html", context)
+    
+@authenticated_user
 def likePost(request, id):
     post = Post.objects.get(id=id)
     account = Account.objects.get(user=request.user)
@@ -97,7 +118,7 @@ def likePost(request, id):
 @authenticated_user
 def feed(request):
     account = Account.objects.get(user=request.user)
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-date_created')
     recommendations = Account.objects.all().exclude(user=request.user).exclude(id__in=account.following.values_list('id'))
     
     if request.method == 'POST':
