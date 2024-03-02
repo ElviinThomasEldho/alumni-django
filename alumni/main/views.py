@@ -43,7 +43,8 @@ def home(request):
 def profile(request):
     account = Account.objects.get(user=request.user)
     posts = Post.objects.filter(account=account)
-    recommendations = Account.objects.all().exclude(user=request.user)
+    recommendations = Account.objects.all().exclude(user=request.user).exclude(id__in=account.following.values_list('id'))
+
     
     context = {
         "account":account,
@@ -57,11 +58,14 @@ def viewProfile(request, id):
     account = Account.objects.get(id=id)
     posts = Post.objects.filter(account=account)
     recommendations = Account.objects.all().exclude(id=account.id)
+    if account in Account.objects.get(user=request.user).followers.all():
+        followed = True
     
     context = {
         "account":account,
         "posts":posts,
         "recommendations":recommendations,
+        "followed":followed
     }
     return render(request, 'main/viewProfile.html', context)
 
@@ -71,7 +75,16 @@ def followAccount(request, id):
     account = Account.objects.get(user=request.user)
     target = Account.objects.get(id=id)
     account.following.add(target)
-    target.followers.add(account)
+    target.followers.add(target)
+    return redirect('profile')
+
+
+@authenticated_user
+def unfollowAccount(request, id):
+    account = Account.objects.get(user=request.user)
+    target = Account.objects.get(id=id)
+    account.following.remove(target)
+    target.followers.remove(target)
     return redirect('profile')
 
 @authenticated_user
@@ -85,7 +98,7 @@ def likePost(request, id):
 def feed(request):
     account = Account.objects.get(user=request.user)
     posts = Post.objects.all()
-    recommendations = Account.objects.all().exclude(user=request.user)
+    recommendations = Account.objects.all().exclude(user=request.user).exclude(id__in=account.following.values_list('id'))
     
     if request.method == 'POST':
         id = request.POST.get('id')

@@ -22,7 +22,11 @@
         {{posts.count}} Posts &nbsp;&nbsp; {{account.followers.count}} Followers
         &nbsp;&nbsp; {{account.following.count}} Following
       </p>
-      <button class="edit">Edit Info</button>
+      {% if followed %}
+      <a href="{% url 'unfollowAccount' account.id %}">Unfollow</a>
+      {% else %}
+      <a href="{% url 'followAccount' account.id %}">+ Follow</a>
+      {% endif %}
     </div>
 
     <div class="about-container">
