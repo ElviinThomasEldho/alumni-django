@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 
 from .decorators import *
 from .models import *
+from .forms import *
 
 # Create your views here.
 @unauthenticated_user
@@ -43,35 +44,91 @@ def home(request):
 def profile(request):
     account = Account.objects.get(user=request.user)
     posts = Post.objects.filter(account=account)
+    recommendations = Account.objects.all().exclude(user=request.user).exclude(id__in=account.following.values_list('id'))
+
     
     context = {
         "account":account,
         "posts":posts,
+        "recommendations":recommendations,
     }
     return render(request, 'main/profile.html', context)
 
+@authenticated_user
+def viewProfile(request, id):
+    account = Account.objects.get(id=id)
+    posts = Post.objects.filter(account=account)
+    recommendations = Account.objects.all().exclude(id=account.id)
+    if account in Account.objects.get(user=request.user).followers.all():
+        followed = True
+    
+    context = {
+        "account":account,
+        "posts":posts,
+        "recommendations":recommendations,
+        "followed":followed
+    }
+    return render(request, 'main/viewProfile.html', context)
 
-def viewProfile(request):
-    return render(request, 'main/viewProfile.html')
 
 @authenticated_user
 def followAccount(request, id):
     account = Account.objects.get(user=request.user)
     target = Account.objects.get(id=id)
     account.following.add(target)
+    target.followers.add(target)
     return redirect('profile')
 
 
-def viewProfile(request):
-    return render(request, 'main/viewProfile.html')
+@authenticated_user
+def unfollowAccount(request, id):
+    account = Account.objects.get(user=request.user)
+    target = Account.objects.get(id=id)
+    account.following.remove(target)
+    target.followers.remove(target)
+    return redirect('profile')
 
+@authenticated_user
+def createPost(request):
+    form = PostForm()
+    
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save()
+            post.account = Account.objects.get(user=request.user)
+            post.save()
 
+            return redirect("feed")
+
+    
+    context = {
+        'form':form
+    }
+    
+    return render(request, "main/createPost.html", context)
+    
+@authenticated_user
+def likePost(request, id):
+    post = Post.objects.get(id=id)
+    account = Account.objects.get(user=request.user)
+    post.likes.add(account)    
+    return redirect('feed')
 
 @authenticated_user
 def feed(request):
     account = Account.objects.get(user=request.user)
-    posts = Post.objects.all()
-    recommendations = Account.objects.all().exclude(user=request.user)
+    posts = Post.objects.all().order_by('-date_created')
+    recommendations = Account.objects.all().exclude(user=request.user).exclude(id__in=account.following.values_list('id'))
+    
+    if request.method == 'POST':
+        id = request.POST.get('id')
+        title = request.POST.get('title')
+        print(id, title)
+        
+        comment = Comment.objects.create(account=account, text=title)
+        post = Post.objects.get(id=id)
+        post.comments.add(comment)
     
     context = {
         "account":account,

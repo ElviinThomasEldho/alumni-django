@@ -172,10 +172,11 @@ main {
   margin-top: 20px;
 }
 
-.social-buttons button {
+.social-buttons button, .social-buttons a {
   flex-grow: 1;
   background-color: #eee;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
+  border: none;
   height: 48px;
   font-size: 0.9rem;
   font-weight: bold;
@@ -184,6 +185,18 @@ main {
 
 .like-button {
   border-bottom-left-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+.comment-container {
+  display: none;
+}
+
+.comment-container.active {
+  display: block;
 }
 
 .share-button {

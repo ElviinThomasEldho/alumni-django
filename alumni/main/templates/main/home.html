@@ -16,11 +16,11 @@
         <!-- Menu -->
         <ul class="menu">
             <li><a href="{% url 'home' %}" onclick="toggleMenu();">Home</a></li>
-            <li><a href="{% url 'feed' %}" onclick="toggleMenu();">Feed</a></li>
             <li><a href="#about" onclick="toggleMenu();">About</a></li>
             <li><a href="#services" onclick="toggleMenu();">Events</a></li>
-            <li><a href="{% url 'rooms' %}" onclick="toggleMenu();">Chats</a></li>
             {% if user.is_authenticated %}
+            <li><a href="{% url 'feed' %}" onclick="toggleMenu();">Feed</a></li>
+            <li><a href="{% url 'rooms' %}" onclick="toggleMenu();">Chats</a></li>
             <li><a href="{% url 'logoutUser' %}" onclick="toggleMenu();">Logout</a></li>
             {% else %}
             <li><a href="{% url 'loginUser' %}" onclick="toggleMenu();">Login</a></li>
