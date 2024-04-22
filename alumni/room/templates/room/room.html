@@ -272,9 +272,9 @@
       /></a>
       <ul class="nav-items">
         <li><a href="{% url 'home' %}">Home</a></li>
-        <li><a href="#">My Networks</a></li>
-        <li><a href="#">Jobs</a></li>
-        <li><a href="#">Chats</a></li>
+            <li><a href="#">My Networks</a></li>
+            <li><a href="#">Jobs</a></li>
+            <li><a href="{% url 'rooms' %}">Chats</a></li>
       </ul>
 
       <img
@@ -287,38 +287,20 @@
       <div class="sidebar">
         <div class="rooms-container">
           <ul>
-            {% for a in accounts %}
-            <a href="{% url 'create_personal_room' a.user.username %}">
-              <li>
-                <img
-                  src="/static{{a.profilePicture.url}}"
-                  alt="Profile Picture"
-                  class="profile-pic"
-                />
-                {{ a.firstName }} {{ a.lastName }}
-              </li>
-            </a>
-            {% endfor %} {% for r in rooms %}
-            <a href="{% url 'room' r.slug %}"><li>{{ r.name }}</li></a>
+
+            {% for r in rooms %}
+              <a href="{% url 'room' r.slug %}"><li>{{ r.name }}</li></a>
             {% endfor %}
           </ul>
         </div>
 
-        <div class="create-room-container">
-          <h2>Create New Group</h2>
-          <form method="post" action="{% url 'create_room' %}">
-            {% csrf_token %}
-            <input type="text" name="name" placeholder="Room Name" />
-            <button type="submit">Create</button>
-          </form>
-        </div>
-
+        <a href="{% url 'newchat' %}">
         <img
           src="{% static 'img/plus.png' %}"
           alt="Create Room"
           class="show-create-room"
           id="show-create-room"
-        />
+        /></a>
       </div>
       <div class="chat-area">
         <div class="room-name" id="room-name">
@@ -352,11 +334,6 @@
         </div>
       </div>
     </div>
-
-    <script>
-      const plusImgUrl = "{% static 'img/plus.png' %}";
-      const closeImgUrl = "{% static 'img/close.png' %}";
-    </script>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -414,19 +391,6 @@
         scrollToBottom();
       });
 
-      document
-        .getElementById("show-create-room")
-        .addEventListener("click", function () {
-          const createRoomContainer = document.querySelector(
-            ".create-room-container"
-          );
-          createRoomContainer.style.display =
-            createRoomContainer.style.display === "none" ? "block" : "none";
-          this.src =
-            createRoomContainer.style.display === "none"
-              ? plusImgUrl
-              : closeImgUrl;
-        });
     </script>
   </body>
 </html>

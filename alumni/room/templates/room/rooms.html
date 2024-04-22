@@ -162,7 +162,7 @@
             <li><a href="{% url 'home' %}">Home</a></li>
             <li><a href="#">My Networks</a></li>
             <li><a href="#">Jobs</a></li>
-            <li><a href="#">Chats</a></li>
+            <li><a href="{% url 'rooms' %}">Chats</a></li>
         </ul>
         <img src="/static{{account.profilePicture.url}}" alt="Profile Picture" class="profile-pic"/>
     </nav>
@@ -170,44 +170,31 @@
         <div class="sidebar">
             <div class="rooms-container">
                 <ul>
-                    {% for a in accounts %}
-                        <a href="{% url 'create_personal_room' a.user.username %}">
+                    {% for personal_room in personal_rooms %}
+                        <a href="{% url 'create_personal_room' personal_room.username %}">
                             <li>
-                                <img src="/static{{a.profilePicture.url}}" alt="Profile Picture" class="profile-pic"/>
-                                {{ a.firstName }} {{ a.lastName }}
+                                <img src="{{ personal_room.profile_image }}" alt="Profile Picture" class="profile-pic"/>
+                                {{ personal_room.name }}
                             </li>
                         </a>
                     {% endfor %}
-                    {% for r in rooms %}
+                    {% for r in public_rooms %}
                         <a href="{% url 'room' r.slug %}"><li>{{ r.name }}</li></a>
                     {% endfor %}
                 </ul>
             </div>
-            <div class="create-room-container">
-                <h2>Create New Room</h2>
-                <form method="post" action="{% url 'create_room' %}">
-                    {% csrf_token %}
-                    <input type="text" name="name" placeholder="Room Name">
-                    <button type="submit">Create</button>
-                </form>
-            </div>
-            <img src="{% static 'img/plus.png' %}" alt="Create Room" class="show-create-room" id="show-create-room">
+            <a href="{% url 'newchat' %}">
+                <img
+                  src="{% static 'img/plus.png' %}"
+                  alt="Create Room"
+                  class="show-create-room"
+                  id="show-create-room"
+                />
+            </a>    
         </div>
         <div class="chat-area">
             <!-- Your chat area content -->
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const plusImgUrl = "{% static 'img/plus.png' %}";
-            const closeImgUrl = "{% static 'img/close.png' %}";
-
-            document.getElementById('show-create-room').addEventListener('click', function() {
-                const createRoomContainer = document.querySelector('.create-room-container');
-                createRoomContainer.style.display = createRoomContainer.style.display === 'none' ? 'block' : 'none';
-                this.src = createRoomContainer.style.display === 'none' ? plusImgUrl : closeImgUrl;
-            });
-        });
-    </script>
 </body>
 </html>
